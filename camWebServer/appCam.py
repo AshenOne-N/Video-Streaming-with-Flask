@@ -40,6 +40,14 @@ def video_feed():
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/update-info')
+def update_info():
+    prefix_s = '扫描成功！'
+    prefix_f = '扫描失败！'
+    
+    return jsonify(message=prefix_f)
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port =80, debug=True, threaded=True)

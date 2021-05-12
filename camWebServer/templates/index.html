@@ -9,9 +9,10 @@
     <link rel="stylesheet" href='../static/style.css'/>
   </head>
   <body>
-    <h1 id="qrinfo">MJRoBot Lab Live Streaming</h1>
-    <h3><img src="{{ url_for('video_feed') }}" width="100%"></h3>
+    <h1 id="qrinfo" data-href="{{ url_for('update_info') }}">MJRoBot Lab Live Streaming</h1>
+    <h3><img src="{{ url_for('video_feed') }}" width="50%"></h3>
     <hr>
     <p> @2018 Developed by MJRoBot.org</p>
   </body>
+  <script type="text/javascript" src="{{ url_for('static',filename='script.js') }}"></script>
 </html>
