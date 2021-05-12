@@ -26,16 +26,17 @@ def index():
 
 def gen(camera):
     """Video streaming generator function."""
-    
+    prefix = './imgs/'
+    postfix = '.png'
     while True:
         
         sss,img = camera.read()
 
-       # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        #barcodes = pzb.decode(gray)
-        #for b in barcodes:
-        #     barcodedata = b.data.decode('utf-8')
-        cv2.imwrite('5.png',img)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        barcodes = pzb.decode(gray)
+        for b in barcodes:
+             barcodedata = b.data.decode('utf-8')
+             cv2.imwrite(prefix + barcodedata + postfix,img)
         ret,jpeg = cv2.imencode('.jpg',img)
         frame = jpeg.tobytes()
 
