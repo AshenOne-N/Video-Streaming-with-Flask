@@ -32,7 +32,7 @@ def gen(camera):
         
         sss,img = camera.read()
 
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         barcodes = pzb.decode(gray)
         for b in barcodes:
              barcodedata = b.data.decode('utf-8')
