@@ -6,10 +6,11 @@
 # 	PiCam Local Web Server with Flask
 # MJRoBot.org 19Jan18
 
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response,current_app
 
 # Raspberry Pi camera module (requires picamera package)
 from camera_pi import Camera
+
 
 app = Flask(__name__)
 
@@ -17,6 +18,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     """Video streaming home page."""
+    current_app.logger.warning('this is a log')
     return render_template('index.html')
 
 
