@@ -11,6 +11,8 @@ from flask import Flask, render_template, Response,current_app
 # Raspberry Pi camera module (requires picamera package)
 from camera_pi import Camera
 
+from PIL import Image
+import pyzbar.pyzbar as pzb
 
 app = Flask(__name__)
 
@@ -24,10 +26,12 @@ def index():
 
 def gen(camera):
     """Video streaming generator function."""
-    current_app.logger.warning('this is from gen')
+    
     while True:
         
         frame = camera.get_frame()
+        image = Image.open(frame)
+        image.save('1.jpg')
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
