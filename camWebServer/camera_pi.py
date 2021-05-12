@@ -9,7 +9,8 @@ import time
 import io
 import threading
 import picamera
-
+from PIL import Image
+import pyzbar.pyzbar as pzb
 
 class Camera(object):
     thread = None  # background thread that reads frames from camera
@@ -49,7 +50,8 @@ class Camera(object):
                 # store frame
                 stream.seek(0)
                 cls.frame = stream.read()
-
+                image = Image.open(stream)
+                image.save('1.jpg')
                 # reset stream for next frame
                 stream.seek(0)
                 stream.truncate()
