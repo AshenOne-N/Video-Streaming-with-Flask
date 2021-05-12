@@ -55,10 +55,14 @@ def update_info():
     img = cv2.imread('7.png',cv2.IMREAD_UNCHANGED)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     barcodes = pzb.decode(gray)
-    for b in barcodes:
-        barcodedata = b.data.decode('utf-8')
+    #for b in barcodes:
+        #barcodedata = b.data.decode('utf-8')
+    if len(barcodes) > 0:
+        barcodedata = barcodes[0].data.decode('utf-8')
+        return jsonify(message=barcodedata)
+    else:
 
-    return jsonify(message=barcodedata)
+        return jsonify(message=prefix_f)
 
 
 
