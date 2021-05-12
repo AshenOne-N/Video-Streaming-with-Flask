@@ -6,7 +6,7 @@
 # 	PiCam Local Web Server with Flask
 # MJRoBot.org 19Jan18
 
-from flask import Flask, render_template, Response,current_app
+from flask import Flask, render_template, Response,current_app，send_from_directory,jsonify
 
 # Raspberry Pi camera module (requires picamera package)
 from camera_pi import Camera
