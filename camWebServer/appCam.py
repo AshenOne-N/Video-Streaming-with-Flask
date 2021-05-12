@@ -50,19 +50,15 @@ def video_feed():
 
 @app.route('/update-info')
 def update_info():
-    prefix_s = '扫描成功！'
-    prefix_f = '扫描失败！'
+    prefix_f = '请出示二维码'
     img = cv2.imread('7.png',cv2.IMREAD_UNCHANGED)
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    barcodes = pzb.decode(gray)
-    #for b in barcodes:
-        #barcodedata = b.data.decode('utf-8')
-    if len(barcodes) > 0:
-        barcodedata = barcodes[0].data.decode('utf-8')
-        return jsonify(message=barcodedata)
-    else:
-
-        return jsonify(message=prefix_f)
+    if not img is None:
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        barcodes = pzb.decode(gray)
+        if len(barcodes) > 0:
+            barcodedata = barcodes[0].data.decode('utf-8')
+            return jsonify(message=barcodedata)
+    return jsonify(message=prefix_f)
 
 
 
