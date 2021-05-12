@@ -32,11 +32,8 @@ def gen(camera):
         
         sss,img = camera.read()
 
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        barcodes = pzb.decode(gray)
-        for b in barcodes:
-             barcodedata = b.data.decode('utf-8')
-             cv2.imwrite(prefix + barcodedata + postfix,img)
+        
+        cv2.imwrite('7.png',img)
         ret,jpeg = cv2.imencode('.jpg',img)
         frame = jpeg.tobytes()
 
@@ -55,8 +52,13 @@ def video_feed():
 def update_info():
     prefix_s = '扫描成功！'
     prefix_f = '扫描失败！'
-    
-    return jsonify(message=prefix_f)
+    img = cv2.imread('7.png',cv2.IMREAD_UNCHANGED)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    barcodes = pzb.decode(gray)
+    for b in barcodes:
+        barcodedata = b.data.decode('utf-8')
+
+    return jsonify(message=barcodedata)
 
 
 
