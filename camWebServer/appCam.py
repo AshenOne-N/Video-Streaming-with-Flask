@@ -30,6 +30,12 @@ def gen(camera):
     while True:
         
         sss,img = camera.read()
+
+       # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        #barcodes = pzb.decode(gray)
+        #for b in barcodes:
+        #     barcodedata = b.data.decode('utf-8')
+        cv2.imwrite('5.png',img)
         ret,jpeg = cv2.imencode('.jpg',img)
         frame = jpeg.tobytes()
 
