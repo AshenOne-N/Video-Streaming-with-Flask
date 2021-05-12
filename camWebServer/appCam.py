@@ -33,7 +33,7 @@ def gen(camera):
         sss,img = camera.read()
 
         
-        cv2.imwrite('7.png',img)
+        cv2.imwrite('7.jpg',img)
         ret,jpeg = cv2.imencode('.jpg',img)
         frame = jpeg.tobytes()
 
@@ -51,7 +51,7 @@ def video_feed():
 @app.route('/update-info')
 def update_info():
     prefix_f = '请出示二维码'
-    img = cv2.imread('7.png',cv2.IMREAD_UNCHANGED)
+    img = cv2.imread('7.jpg',cv2.IMREAD_UNCHANGED)
     if not img is None:
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         barcodes = pzb.decode(gray)
